@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>HAR Analyzer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="toolbar">
+    <button id="open-btn">Open HAR</button>
+    <span id="file-info" class="file-info">No file loaded — drag & drop or click Open HAR</span>
+    <div class="toolbar-right">
+      <input type="search" id="search" placeholder="Filter by URL, method, status...">
+      <div class="filter-tabs">
+        <button class="ftab active" data-filter="all">All</button>
+        <button class="ftab" data-filter="http">HTTP</button>
+        <button class="ftab" data-filter="ws">WebSocket</button>
+        <button class="ftab" data-filter="api">API</button>
+      </div>
+      <button id="theme-toggle">Light</button>
+    </div>
+  </div>
+
+  <div id="insights" class="insights hidden"></div>
+
+  <div class="main">
+    <div class="sidebar">
+      <div id="entry-count" class="entry-count hidden"></div>
+      <div id="entries-list"></div>
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon">&#9875;</div>
+        <p>Open a HAR file to begin</p>
+        <p class="empty-sub">Drag & drop a .har file anywhere</p>
+      </div>
+    </div>
+
+    <div class="detail-panel">
+      <div id="detail-placeholder" class="detail-placeholder">
+        <div class="placeholder-icon">&#8652;</div>
+        <p>Select a request to inspect</p>
+      </div>
+
+      <div id="detail-content" class="hidden">
+        <div class="detail-header">
+          <span id="detail-method" class="method-badge"></span>
+          <span id="detail-url" class="detail-url"></span>
+          <span id="detail-status" class="status-badge"></span>
+        </div>
+        <div class="dtab-bar">
+          <button class="dtab active" data-tab="request">Request</button>
+          <button class="dtab" data-tab="response">Response</button>
+          <button class="dtab" id="ws-dtab" data-tab="ws" style="display:none">Messages</button>
+          <button class="dtab" id="auth-dtab" data-tab="auth" style="display:none">Auth</button>
+        </div>
+        <div class="detail-body">
+          <div id="tab-request" class="tab-pane"></div>
+          <div id="tab-response" class="tab-pane hidden"></div>
+          <div id="tab-ws" class="tab-pane hidden"></div>
+          <div id="tab-auth" class="tab-pane hidden"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
