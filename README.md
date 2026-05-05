@@ -62,7 +62,7 @@ Builds are produced in the `dist/` folder.
 npm run build
 
 # Specific platforms
-npm run build:linux   # AppImage + .deb (x64)
+npm run build:linux   # AppImage (x64)
 npm run build:win     # NSIS installer + portable .exe (x64)
 npm run build:mac     # .dmg + .zip (x64 + arm64)
 ```
@@ -71,33 +71,9 @@ npm run build:mac     # .dmg + .zip (x64 + arm64)
 
 | Platform | Formats |
 |----------|---------|
-| Linux    | `.AppImage`, `.deb` |
+| Linux    | `.AppImage` |
 | Windows  | NSIS installer, portable `.exe` |
-| macOS    | `.dmg`, `.zip` (universal: x64 + Apple Silicon) |
-
----
-
-## CI / Releases
-
-GitHub Actions builds all three platforms in parallel on every push to a `v*` tag and on manual dispatch.
-
-**To publish a release:**
-
-```bash
-git tag v1.2.0
-git push origin v1.2.0
-```
-
-The workflow will:
-1. Build Linux on `ubuntu-latest`, Windows on `windows-latest`, macOS on `macos-latest`
-2. Upload all build artifacts
-3. Create a GitHub Release with auto-generated release notes and all artifacts attached
-
-To trigger a build without a release, use **Actions → Build → Run workflow** in the GitHub UI.
-
-> macOS builds are unsigned. To enable code signing, add your certificate as a `CSC_LINK` / `CSC_KEY_PASSWORD` secret in the repository settings.
-
----
+| macOS    | `.dmg`, `.zip` (x64 + arm64) |
 
 ## Project Structure
 
