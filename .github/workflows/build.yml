@@ -51,7 +51,6 @@ jobs:
           name: har-analyzer-${{ matrix.platform }}
           path: |
             dist/*.AppImage
-            dist/*.deb
             dist/*.exe
             dist/*.dmg
             dist/*.zip
